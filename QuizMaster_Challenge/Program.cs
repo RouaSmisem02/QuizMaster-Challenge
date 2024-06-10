@@ -74,7 +74,6 @@ namespace QuizMaster_Challenge
             {
                 Console.WriteLine($"Question {i + 1}: {questions[i]}");
 
-                // Start a 10-second timer
                 bool answered = false;
                 var timer = new Timer(state =>
                 {
@@ -82,24 +81,23 @@ namespace QuizMaster_Challenge
                     {
                         Console.WriteLine("\nTime's up!");
                         Console.WriteLine($"The correct answer is: {answers[i]}\n");
-                        answered = true; // Mark as answered to prevent additional handling
+                        answered = true; 
                     }
                 }, null, 10000, Timeout.Infinite);
 
                 Console.Write("Your answer: ");
                 string userAnswer = Console.ReadLine();
 
-                // Stop the timer
                 timer.Change(Timeout.Infinite, Timeout.Infinite);
 
                 if (string.IsNullOrEmpty(userAnswer))
                 {
                     Console.WriteLine("Please enter an answer.");
-                    i--; // Stay on the current question in case of invalid input
+                    i--; 
                     continue;
                 }
 
-                // Check if the user has already answered due to timer expiration
+                
                 if (!answered)
                 {
                     if (userAnswer.Trim().ToLower() == answers[i].ToLower())
@@ -113,7 +111,6 @@ namespace QuizMaster_Challenge
                     }
                 }
 
-                // Increment i to move to the next question after handling the current one
             }
 
             Console.WriteLine($"Your final score is {score} out of {questions.Length}.");
